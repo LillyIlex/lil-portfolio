@@ -109,5 +109,5 @@ export function getContactActions(cvUrl: string): ContactAction[] {
 export const footer = {
   note: "Built with React, Tailwind & attention to detail.",
   role: "Front End Developer",
-  owner: "Elizabeth (Lil) Lloyd-Jones",
+  owner: "Lil Lloyd-Jones",
 };
