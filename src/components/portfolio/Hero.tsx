@@ -27,7 +27,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-10 max-w-5xl text-center">
+      <div className="relative z-10 max-w-4xl text-center">
         <Eyebrow className="mb-4 animate-fade-in-up">{hero.eyebrow}</Eyebrow>
         <Title as="h1" variant="xl" className="animate-fade-in-up">
           {hero.nameStart}
