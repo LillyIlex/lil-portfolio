@@ -1,75 +1,74 @@
-# React + TypeScript + Vite
+# Lil Lloyd-Jones — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A single-page portfolio site built with React, TypeScript and Tailwind CSS, showcasing front-end projects, technical approach and experience.
 
-Currently, two official plugins are available:
+**Live site:** [lillyilex.github.io/lil-portfolio](https://lillyilex.github.io/lil-portfolio/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Overview
 
-## React Compiler
+The site is a fast, statically-deployed showcase covering:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Projects** — case studies with screenshots, including a healthcare/pharmacy prescription portal (CloudRx)
+- **Approach** — a walkthrough of technical decision-making and architecture
+- **Code snippets** — annotated examples of real implementation work
+- **Experience & education**
+- **About & contact** — including a downloadable CV
 
-## Expanding the ESLint configuration
+Below-the-fold sections are code-split and lazy-mounted as they scroll into view, keeping the initial load light.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+| | |
+|---|---|
+| **Framework** | React 19 + TypeScript |
+| **Build tool** | Vite (Rolldown) |
+| **Styling** | Tailwind CSS v4 |
+| **UI primitives** | Radix UI, shadcn/ui-style components |
+| **Animation** | Framer Motion |
+| **Deployment** | GitHub Pages, via GitHub Actions |
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Getting started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+\`\`\`bash
+# Install dependencies
+npm install
 
-```
+# Start the dev server
+npm run dev
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+# Type-check and build for production
+npm run build
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# Preview the production build locally
+npm run preview
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Lint
+npm run lint
+\`\`\`
 
-```
+Requires Node.js 22+.
+
+## Project structure
+
+\`\`\`
+src/
+├── components/
+│   ├── base/         # Hand-authored building blocks (Button, Title, Paragraph, etc.)
+│   ├── layout/        # Page chrome (nav bar, back-to-top)
+│   ├── portfolio/      # Page sections (Hero, Projects, About, Contact, ...)
+│   └── ui/             # shadcn/ui-generated primitives
+├── data/               # Content and project data, kept separate from presentation
+├── hooks/
+├── lib/
+└── App.tsx            # Page composition — assembles all sections
+\`\`\`
+
+Content (project copy, experience, skills) lives in `src/data/`, separate from the components that render it, so the site's text can be updated without touching component code.
+
+## Deployment
+
+The site deploys automatically to GitHub Pages on every push to `master` via the workflow in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml): it installs dependencies, runs the production build, and publishes the output.
+
+## License
+
+Personal portfolio — content and copy are not licensed for reuse. 
