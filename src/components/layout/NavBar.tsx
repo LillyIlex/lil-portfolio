@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { navItems } from "@/data/content";
+import { forceShowUpTo } from "@/lib/lazy-mount-registry";
+
+const NAV_OFFSET = 56;
+const sectionOrder = navItems.map((item) => item.id);
 
 /** Sticky section nav that highlights the section currently in view. */
 export function NavBar() {
@@ -38,14 +42,40 @@ export function NavBar() {
 
   const scrollToSection = (event: React.MouseEvent, id: string) => {
     event.preventDefault();
-    // Instant jumps, re-aligned as deferred sections mount, so a smooth scroll
-    // can never be interrupted mid-flight by a layout change.
-    const align = () => {
-      const node = document.getElementById(id);
-      if (node) window.scrollTo({ top: node.getBoundingClientRect().top + window.scrollY - 56 });
-    };
-    align();
-    [250, 600, 1100, 1600, 2200].forEach((delay) => window.setTimeout(align, delay));
+
+    // Mount every section up to the target NOW, so its final height is
+    // already known before we compute where to scroll — this is what the
+    // old five-jump re-alignment was working around, badly.
+    forceShowUpTo(id, sectionOrder);
+
+    // Two rAFs: one for React to commit the forced-mount state updates,
+    // one for the browser to complete layout off the back of them.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const node = document.getElementById(id);
+        if (!node) return;
+        const top = node.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
+        window.scrollTo({ top, behavior: "smooth" });
+
+        // Safety net only — silently corrects a few stray pixels if a
+        // lazy chunk was still downloading when we measured. No visible
+        // re-jump; this is a single tiny nudge, not the old repeated snap.
+        const settle = () => {
+          const current = document.getElementById(id);
+          if (!current) return;
+          const drift = current.getBoundingClientRect().top - NAV_OFFSET;
+          if (Math.abs(drift) > 4) {
+            window.scrollTo({ top: window.scrollY + drift });
+          }
+        };
+        const supportsScrollEnd = "onscrollend" in window;
+        if (supportsScrollEnd) {
+          window.addEventListener("scrollend", settle, { once: true });
+        } else {
+          window.setTimeout(settle, 700);
+        }
+      });
+    });
   };
 
   return (

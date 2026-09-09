@@ -193,105 +193,114 @@ export const architecture: { title: string; intro: string; steps: ApproachStep[]
 export const snippets: Snippet[] = [
   {
     id: "api-hook",
-    title: "useAxiosFetch",
-    language: "TypeScript",
-    description:
-      "A reusable, generically typed hook I used on LEO and EdgeX for fetching data with Axios, loading states, and cleanup.",
-    code: `interface FetchState<T> {
-  data: T | null;
-  loading: boolean;
-  error: Error | null;
-}
-
-function useAxiosFetch<T>(url: string): FetchState<T> {
-  const [data, setData] = useState<T | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    setLoading(true);
-
-    axios
-      .get<T>(url, { signal: controller.signal })
-      .then((res) => setData(res.data))
-      .catch((err: unknown) => {
-        if (!axios.isCancel(err)) setError(err as Error);
-      })
-      .finally(() => setLoading(false));
-
-    return () => controller.abort();
-  }, [url]);
-
-  return { data, loading, error };
-}`,
+    title: "Form Validation",
+    language: "React Native",
+    description: "",
+    code: `const siteVisitSchema = object().shape({
+      shiftType: string().required(),
+      permitRequired: string().oneOf(["Yes", "No"]).required(),
+    
+      // Only required when the sibling field flags it — avoids maintaining
+      // a separate schema per branch of the form.
+      permitNumbers: array()
+        .of(object({ value: string().required("Enter a permit number") }))
+        .when("permitRequired", {
+          is: "Yes",
+          then: (schema) => schema.min(1, "Enter at least one permit number"),
+          otherwise: (schema) => schema.notRequired(),
+        }),
+    
+      hazards: array().of(string()).min(1, "Select at least one hazard"),
+      hazardsOther: string().when("hazards", {
+        is: (hazards: string[]) => hazards?.includes("Other"),
+        then: (schema) => schema.required("Describe the hazard"),
+        otherwise: (schema) => schema.notRequired(),
+      }),
+    });
+    
+    /** Runs a Yup schema and reshapes the result into { isValid, errors },
+     *  ready to hand straight to form state. */
+    async function validateForm<T extends object>(schema: ObjectSchema<T>, values: T) {
+      try {
+        await schema.validate(values, { abortEarly: false });
+        return { isValid: true, errors: {} as Record<string, string> };
+      } catch (error) {
+        const errors: Record<string, string> = {};
+        if (error instanceof ValidationError) {
+          error.inner.forEach((err) => {
+            if (err.path) errors[err.path] = err.message;
+          });
+        }
+        return { isValid: false, errors };
+      }
+    }`,
   },
-  {
-    id: "parent-level-data",
-    title: "Data at the parent, presentation in the child",
-    language: "TypeScript (TSX)",
-    description:
-      "How I structure screens: the parent owns the typed API data and state, child components stay dumb and reusable — the pattern behind LEO and the prescriptions portals.",
-    code: `interface Prescription {
-  id: string;
-  patient: string;
-  status: "pending" | "approved" | "rejected";
-  issuedAt: string;
-}
+//   {
+//     id: "parent-level-data",
+//     title: "Data at the parent, presentation in the child",
+//     language: "TypeScript (TSX)",
+//     description:
+//       "How I structure screens: the parent owns the typed API data and state, child components stay dumb and reusable — the pattern behind LEO and the prescriptions portals.",
+//     code: `interface Prescription {
+//   id: string;
+//   patient: string;
+//   status: "pending" | "approved" | "rejected";
+//   issuedAt: string;
+// }
 
-function PrescriptionList() {
-  const { data, loading, error } =
-    useAxiosFetch<Prescription[]>("/api/prescriptions");
+// function PrescriptionList() {
+//   const { data, loading, error } =
+//     useAxiosFetch<Prescription[]>("/api/prescriptions");
 
-  if (loading) return <ListSkeleton rows={5} />;
-  if (error) return <ErrorState onRetry={refetch} />;
+//   if (loading) return <ListSkeleton rows={5} />;
+//   if (error) return <ErrorState onRetry={refetch} />;
 
-  return (
-    <ul className="grid gap-4">
-      {data?.map((rx) => (
-        <PrescriptionCard
-          key={rx.id}
-          patient={rx.patient}
-          status={rx.status}
-          issuedAt={rx.issuedAt}
-        />
-      ))}
-    </ul>
-  );
-}`,
-  },
-  {
-    id: "card-component",
-    title: "Typed Animated Project Card",
-    language: "TypeScript (TSX)",
-    description:
-      "A polished card with hover lift, glow, and image scale using only Tailwind utilities — with a typed props contract.",
-    code: `interface ProjectCardProps {
-  title: string;
-  image: string;
-  onOpen?: () => void;
-}
+//   return (
+//     <ul className="grid gap-4">
+//       {data?.map((rx) => (
+//         <PrescriptionCard
+//           key={rx.id}
+//           patient={rx.patient}
+//           status={rx.status}
+//           issuedAt={rx.issuedAt}
+//         />
+//       ))}
+//     </ul>
+//   );
+// }`,
+//   },
+//   {
+//     id: "card-component",
+//     title: "Typed Animated Project Card",
+//     language: "TypeScript (TSX)",
+//     description:
+//       "A polished card with hover lift, glow, and image scale using only Tailwind utilities — with a typed props contract.",
+//     code: `interface ProjectCardProps {
+//   title: string;
+//   image: string;
+//   onOpen?: () => void;
+// }
 
-export function ProjectCard({ title, image, onOpen }: ProjectCardProps) {
-  return (
-    <article
-      onClick={onOpen}
-      className="group rounded-2xl border border-border bg-card
-        transition-all duration-300 hover:-translate-y-1
-        hover:border-primary/40"
-    >
-      <div className="aspect-4/3 overflow-hidden">
-        <img
-          src={image}
-          alt={title}
-          className="h-full w-full object-cover
-            transition-transform duration-500 group-hover:scale-105"
-        />
-      </div>
-    </article>
-  );
-}`,
-  },
+// export function ProjectCard({ title, image, onOpen }: ProjectCardProps) {
+//   return (
+//     <article
+//       onClick={onOpen}
+//       className="group rounded-2xl border border-border bg-card
+//         transition-all duration-300 hover:-translate-y-1
+//         hover:border-primary/40"
+//     >
+//       <div className="aspect-4/3 overflow-hidden">
+//         <img
+//           src={image}
+//           alt={title}
+//           className="h-full w-full object-cover
+//             transition-transform duration-500 group-hover:scale-105"
+//         />
+//       </div>
+//     </article>
+//   );
+// }`,
+//   },
 ];
 
 

@@ -30,7 +30,7 @@ export function MoreWork() {
                         href={item.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-primary"
+                        className="-mx-1.5 -my-0.5 inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 font-medium text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:text-primary hover:glow-primary"
                       >
                         {item.name}
                         <ArrowUpRight className="h-3.5 w-3.5" />

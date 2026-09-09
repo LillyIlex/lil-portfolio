@@ -16,44 +16,45 @@ const surface =
   "rounded-2xl border border-border bg-card/50 backdrop-blur-sm transition-colors duration-300 hover:border-primary/30";
 
 export type CardProps =
-  | { variant: "project"; data: Project }
+  | { variant: "project"; data: Project; minHeight?: number }
   | { variant: "experience"; data: ExperienceItem }
-  | { variant: "approach"; data: ApproachStep; index: number }
+  | { variant: "approach"; data: ApproachStep; index: number, minHeight?: number }
   | { variant: "code"; data: Snippet };
 
 /** One card component, four variants — mapped over from data at parent level. */
 export function Card(props: CardProps) {
   switch (props.variant) {
     case "project":
-      return <ProjectCard project={props.data} />;
+      return <ProjectCard project={props.data} minHeight={props.minHeight} />;
     case "experience":
       return <ExperienceCard job={props.data} />;
     case "approach":
-      return <ApproachCard step={props.data} index={props.index} />;
+      return <ApproachCard step={props.data} index={props.index} minHeight={props.minHeight} />;
     case "code":
       return <CodeCard snippet={props.data} />;
   }
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, minHeight }: { project: Project; minHeight?: number }) {
   const [showAll, setShowAll] = useState(false);
   const hasHiddenBullets = project.highlights.length > MOBILE_BULLET_LIMIT;
 
   return (
     <article
-      className={cn(
-        surface,
-        "group relative flex h-full flex-col overflow-hidden bg-card hover:border-primary/40 hover:glow-primary sm:hover:-translate-y-1 sm:transition-all",
-      )}
+      // Deliberately not using the shared `surface` style here — that
+      // includes a hover:border colour shift, which read as a clickable
+      // affordance on a card that doesn't navigate anywhere on click.
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card"
+      style={minHeight ? { minHeight } : undefined}
     >
-      <div className="aspect-[16/10] overflow-hidden bg-forest sm:aspect-[4/3]">
-        <img
-          src={project.image}
-          alt={`${project.title} interface`}
-          loading="lazy"
-          decoding="async"
-          className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-        />
+      <div className="aspect-[16/10] bg-forest p-3 sm:aspect-[4/3] sm:p-4">
+          <img
+            src={project.image}
+            alt={`${project.title} interface`}
+            loading="lazy"
+            decoding="async"
+            className="aspect-[16/10] h-full w-full object-cover object-top sm:aspect-[4/3]"
+          />
       </div>
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
@@ -134,9 +135,9 @@ function ExperienceCard({ job }: { job: ExperienceItem }) {
   );
 }
 
-function ApproachCard({ step, index }: { step: ApproachStep; index: number }) {
+function ApproachCard({ step, index, minHeight }: { step: ApproachStep; index: number; minHeight?: number }) {
   return (
-    <li className={cn(surface, "list-none p-5 sm:p-6")}>
+    <li className={cn(surface, "list-none p-5 sm:p-6")}  style={minHeight ? { minHeight } : undefined}>
       <span className="font-display text-sm font-bold text-primary">
         {String(index + 1).padStart(2, "0")}
       </span>

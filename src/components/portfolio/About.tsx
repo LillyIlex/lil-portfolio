@@ -2,7 +2,7 @@ import { techStack, certifications, interests } from "@/data/projects";
 import { aboutParagraphs, sections } from "@/data/content";
 import { Reveal } from "@/components/base/Reveal";
 import { Section } from "@/components/base/Section";
-import { Eyebrow } from "@/components/base/Typography";
+import { Eyebrow, BulletList } from "@/components/base/Typography";
 import { Title } from "@/components/base/Title";
 import { Paragraph } from "@/components/base/Paragraph";
 
@@ -49,9 +49,7 @@ export function About() {
             </div>
             <div>
               <Eyebrow>Outside of Code</Eyebrow>
-              <Paragraph variant="sm" className="mt-4">
-                {interests.join(" · ")}
-              </Paragraph>
+              <BulletList items={interests} className="mt-4" />
             </div>
           </div>
         </div>

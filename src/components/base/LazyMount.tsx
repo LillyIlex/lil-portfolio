@@ -1,5 +1,7 @@
 import { Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 
+import { registerLazySection } from "@/lib/lazy-mount-registry";
+
 export interface LazyMountProps {
   children: ReactNode;
   /** Anchor id, so nav links and scroll-spy work before the section mounts. */
@@ -24,6 +26,10 @@ export function LazyMount({ children, id, minHeight = 480, fallback }: LazyMount
       return;
     }
 
+    // Let NavBar force this section to mount ahead of a nav click, so the
+    // scroll target's position is correct before we ever scroll to it.
+    const unregister = id ? registerLazySection(id, () => setShow(true)) : undefined;
+
     // Mount once the browser is idle too, so anchor positions settle early.
     const idle = window.setTimeout(() => setShow(true), 900);
 
@@ -39,10 +45,11 @@ export function LazyMount({ children, id, minHeight = 480, fallback }: LazyMount
 
     observer.observe(node);
     return () => {
+      unregister?.();
       window.clearTimeout(idle);
       observer.disconnect();
     };
-  }, []);
+  }, [id]);
 
   return (
     <div id={id} ref={ref} className="scroll-mt-16" style={show ? undefined : { minHeight }}>
