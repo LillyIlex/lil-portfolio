@@ -10,8 +10,16 @@ import edgeElec from "@/assets/edge-elec/edge-elec.png";
 import edgex from "@/assets/edgex/edgex-login.png";
 import edgexTabs from "@/assets/edgex/edgex-tabs.png";
 
-import type { Project, Screenshot,
-} from "./types";
+import risksmart from "@/assets/risksmart/risksmart-main.png"
+import risksmart2 from "@/assets/risksmart/risksmart2.png"
+import risksmart3 from "@/assets/risksmart/risksmart3.png"
+import risksmart4 from "@/assets/risksmart/risksmart4.png"
+
+import stax from "@/assets/stax/stax.png"
+import stax2 from "@/assets/stax/stax2.png"
+import stax3 from "@/assets/stax/stax3.png"
+
+import type { Project, Screenshot,} from "./types";
 
 export type { Project, Screenshot } from "./types";
 
@@ -28,11 +36,16 @@ export const leoPortalImages: Screenshot[] = [
 ]
 
 export const staxImages: Screenshot[] = [
-  { url: edgeElec, caption: "Leo" },
+  { url: stax, caption: "Stax Trade Centres" },
+  { url: stax2, caption: "Stax Trade Centres" },
+  { url: stax3, caption: "Stax Trade Centres" },
 ]
 
 export const risksmartImages: Screenshot[] = [
-  { url: edgexTabs, caption: "Leo" },
+  { url: risksmart, caption: "RiskSmart" },
+  { url: risksmart2, caption: "RiskSmart" },
+  { url: risksmart3, caption: "RiskSmart" },
+  { url: risksmart4, caption: "RiskSmart" },
 ]
 
 export const edgexImages: Screenshot[] = [

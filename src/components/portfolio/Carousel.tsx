@@ -4,6 +4,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Screenshot } from "@/data/types";
 
+import placeholderImg from "@/assets/project-placeholder.png"
+
 const AUTOPLAY_INTERVAL = 8000;
 
 interface CarouselProps {
@@ -12,7 +14,7 @@ interface CarouselProps {
   alt: string;
 }
 
-export function Carousel({ shots, fallbackImage, alt }: CarouselProps) {
+export function Carousel({ shots, fallbackImage = placeholderImg, alt }: CarouselProps) {
   const images = shots?.length ? shots : fallbackImage ? [{ url: fallbackImage, caption: alt }] : [];
   const [index, setIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -72,7 +74,7 @@ export function Carousel({ shots, fallbackImage, alt }: CarouselProps) {
       <div className="relative aspect-[4/3] w-full">
         {images.map((shot, i) => (
           <img
-            key={shot.url}
+            key={`image-${i}`}
             src={shot.url}
             alt={shot.caption || alt}
             loading="lazy"
@@ -110,8 +112,8 @@ export function Carousel({ shots, fallbackImage, alt }: CarouselProps) {
       {/* Dot indicators */}
       <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1.5">
         {images.map((shot, i) => (
-          <button
-            key={shot.url}
+         <button
+            key={`dot-${i}`}
             type="button"
             onClick={() => goTo(i)}
             aria-label={`Go to screenshot ${i + 1}`}

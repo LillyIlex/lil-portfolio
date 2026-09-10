@@ -90,7 +90,7 @@ function ProjectCard({ project }: { project: Project }) {
           }
         />
 
-        {hasMoreBullets && (
+        {hasMoreBullets ? (
           <button
             type="button"
             onClick={() => setShowAll((value) => !value)}
@@ -106,7 +106,11 @@ function ProjectCard({ project }: { project: Project }) {
               )}
             />
           </button>
-        )}
+        ) : 
+        (
+         <div className="h-9.5"></div>
+         )
+        }
 
         <TagList
           tags={project.tags}
