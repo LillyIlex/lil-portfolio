@@ -1,4 +1,4 @@
-import { snippets } from "@/data/projects";
+import { snippets } from "@/data/codeSnippets";
 import { sections } from "@/data/content";
 import { Card } from "@/components/base/Card";
 import { Reveal } from "@/components/base/Reveal";

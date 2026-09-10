@@ -1,4 +1,6 @@
-import { experience, education } from "@/data/projects";
+
+import { experience } from "@/data/experience";
+import { education } from "@/data/education";
 import { sections } from "@/data/content";
 import { Card } from "@/components/base/Card";
 import { Reveal } from "@/components/base/Reveal";

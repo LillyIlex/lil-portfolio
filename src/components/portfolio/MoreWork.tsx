@@ -1,6 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 
-import { workGroups } from "@/data/projects";
+import { workGroups } from "@/data/workGroups";
 import { sections } from "@/data/content";
 import { Title } from "@/components/base/Title";
 import { Paragraph } from "@/components/base/Paragraph";

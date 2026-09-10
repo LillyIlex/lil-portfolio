@@ -1,47 +1,63 @@
-import { useState } from "react";
-import { Check, Copy } from "lucide-react";
+// components/portfolio/CodeBlock.tsx
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-export interface CodeBlockProps {
+interface CodeBlockProps {
   code: string;
   language: string;
+  description?: string;
 }
 
-/** Terminal-styled code block with copy-to-clipboard. */
-export function CodeBlock({ code, language }: CodeBlockProps) {
-  const [copied, setCopied] = useState(false);
+const LANGUAGE_MAP: Record<string, string> = {
+  "TypeScript (TSX)": "tsx",
+  "React (JavaScript)": "jsx",
+  "React Native": "jsx",
+  JavaScript: "javascript",
+  TypeScript: "typescript",
+};
 
-  const copy = () => {
-    if (typeof navigator !== "undefined" && navigator.clipboard) {
-      navigator.clipboard.writeText(code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
-  };
+export function CodeBlock({ code, language, description }: CodeBlockProps) {
+  const prismLanguage = LANGUAGE_MAP[language] ?? "tsx";
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-card/80 backdrop-blur-sm transition-all duration-300 hover:border-primary/30">
-      <div className="flex items-center justify-between border-b border-border px-3 py-2.5 sm:px-4 sm:py-3">
-        <div className="flex items-center gap-2">
-          <div className="flex gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-primary/30 sm:h-3 sm:w-3" />
-            <span className="h-2.5 w-2.5 rounded-full bg-accent/30 sm:h-3 sm:w-3" />
-            <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/30 sm:h-3 sm:w-3" />
-          </div>
-          <span className="ml-2 text-[11px] font-semibold text-primary sm:ml-3 sm:text-xs">
-            {language}
-          </span>
+    <div className="overflow-hidden rounded-2xl border border-border bg-black">
+      <div className="flex items-center justify-between border-b border-white/10 bg-black px-4 py-2.5">
+        <div className="flex gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
         </div>
-        <button
-          onClick={copy}
-          className="text-muted-foreground transition-colors hover:text-primary"
-          aria-label="Copy code"
+        <span
+          className="font-mono text-xs font-medium"
+          style={{ color: "rgba(255,255,255,0.7)" }}
         >
-          {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-        </button>
+          {language}
+        </span>
       </div>
-      <pre className="max-h-[22rem] overflow-auto p-3 text-[11px] leading-relaxed sm:max-h-none sm:p-5 sm:text-[13px]">
-        <code className="font-mono text-foreground/90">{code}</code>
-      </pre>
+
+      <SyntaxHighlighter
+        language={prismLanguage}
+        style={vscDarkPlus}
+        showLineNumbers
+        customStyle={{
+          margin: 0,
+          background: "#000000",
+          padding: "1.25rem",
+          fontSize: "0.8rem",
+          lineHeight: 1.6,
+        }}
+        codeTagProps={{ style: { fontFamily: "var(--font-mono, monospace)" } }}
+      >
+        {code}
+      </SyntaxHighlighter>
+
+      {description && (
+        <div className="border-t border-white/10 bg-black px-4 py-3">
+          <p className="font-mono text-xs leading-relaxed text-white">
+            {description}
+          </p>
+        </div>
+      )}
     </div>
   );
 }

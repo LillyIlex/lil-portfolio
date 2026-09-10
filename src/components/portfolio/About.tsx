@@ -1,8 +1,10 @@
-import { techStack, certifications, interests } from "@/data/projects";
+import { interests } from "@/data/interests";
+import { certifications,  } from "@/data/certifications";
+import { techStack } from "@/data/techStack";
 import { aboutParagraphs, sections } from "@/data/content";
 import { Reveal } from "@/components/base/Reveal";
 import { Section } from "@/components/base/Section";
-import { Eyebrow, BulletList } from "@/components/base/Typography";
+import { Eyebrow } from "@/components/base/Typography";
 import { Title } from "@/components/base/Title";
 import { Paragraph } from "@/components/base/Paragraph";
 
@@ -49,7 +51,13 @@ export function About() {
             </div>
             <div>
               <Eyebrow>Outside of Code</Eyebrow>
-              <BulletList items={interests} className="mt-4" />
+              <ul className="mt-4 space-y-2">
+                {interests.map((item) => (
+                  <li key={item} className="text-sm text-muted-foreground">
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
