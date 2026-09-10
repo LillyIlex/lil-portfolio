@@ -1,38 +1,49 @@
-import doctorApprovals from "@/assets/cloudrx/doctor-approvals.png";
-import patientSearch from "@/assets/cloudrx/patient-search.png";
-import resultsFilter from "@/assets/cloudrx/results-filter.png";
-import addPrescription from "@/assets/cloudrx/add-prescription.png";
-import orderDetails from "@/assets/cloudrx/order-details.png";
-import statusReport from "@/assets/cloudrx/status-report.png";
-import addPatient from "@/assets/cloudrx/add-patient.png";
-import changePassword from "@/assets/cloudrx/change-password.png";
-import searchValidation from "@/assets/cloudrx/search-validation.png";
-import cloudRxSignIn from "@/assets/cloudrx/signin.png";
+import leoDesktop from "@/assets/leo/leo-desktop.png";
+import leoDesktop2 from "@/assets/leo/leo-desktop2.png";
+import leoMobile from "@/assets/leo/leo.png";
+import leoMobile2 from "@/assets/leo/leo2.png";
+import leoMobile3 from "@/assets/leo/leo3.png";
 
-import type {
-  ApproachStep,
-  EducationItem,
-  ExperienceItem,
-  Project,
-  Screenshot,
-  Snippet,
-  WorkGroup,
+import edgeElecJob from "@/assets/edge-elec/edge-elec-job.png";
+import edgeElec from "@/assets/edge-elec/edge-elec.png";
+
+import edgex from "@/assets/edgex/edgex-login.png";
+import edgexTabs from "@/assets/edgex/edgex-tabs.png";
+
+import type { Project, Screenshot,
 } from "./types";
 
-export type { Project, Screenshot, WorkGroup } from "./types";
+export type { Project, Screenshot } from "./types";
 
-export const cloudRxPortalGallery: Screenshot[] = [
-  { url: doctorApprovals, caption: "Doctor approvals — sortable, paginated results table" },
-  { url: patientSearch, caption: "Patient search with slide-out criteria panel" },
-  { url: resultsFilter, caption: "Results filtering drawer" },
-  { url: addPrescription, caption: "Add a prescription, with live patient details" },
-  { url: orderDetails, caption: "Prescription order details and basket" },
-  { url: statusReport, caption: "Prescription status report with Excel export" },
-  { url: addPatient, caption: "Add patient — multi-column form with postcode lookup" },
-  { url: searchValidation, caption: "Form validation and empty state" },
-  { url: changePassword, caption: "Change password with password rules" },
-];
+export const leoImages: Screenshot[] = [
+  { url: leoDesktop, caption: "Leo website - landing page" },
+  { url: leoDesktop2, caption: "Leo website screens - modal & products" },
+  { url: leoMobile, caption: "Leo" },
+  { url: leoMobile2, caption: "Leo" },
+  { url: leoMobile3, caption: "Leo" },
+]
 
+export const leoPortalImages: Screenshot[] = [
+  { url: leoDesktop2, caption: "Leo" },
+]
+
+export const staxImages: Screenshot[] = [
+  { url: edgeElec, caption: "Leo" },
+]
+
+export const risksmartImages: Screenshot[] = [
+  { url: edgexTabs, caption: "Leo" },
+]
+
+export const edgexImages: Screenshot[] = [
+  { url: edgex, caption: "Edeg X app" },
+  { url: edgexTabs, caption: "Edeg X app" },
+]
+
+export const edgeElecImages: Screenshot[] = [
+  { url: edgeElec, caption: "Edeg Electrical app" },
+  { url: edgeElecJob, caption: "Edeg Electrical app" },
+]
 
 export const projects: Project[] = [
   {
@@ -50,8 +61,9 @@ export const projects: Project[] = [
       "Mobile-first responsive design matched to Figma and brand guidelines across mobile, tablet and desktop.",
     ],
     tags: ["React", "JavaScript (ES6+)", "SCSS", "REST APIs", "Axios", "Docker", "BitBucket"],
-    image: "/projects/project-leo.png",
+    images: leoImages,
     liveUrl: "https://www.leo.hair/",
+
   },
   {
     id: "leo-portal",
@@ -67,44 +79,45 @@ export const projects: Project[] = [
       "Integrated the full set of REST API endpoints for prescription, patient and fulfilment data.",
       "Internal only — screenshots and code snippets available on request.",
     ],
-    tags: ["React", "JavaScript", "REST APIs", "Claude Code", "Tailwind", "Azure DevOps"],
-    image: "/projects/project-pharma.png",
+    tags: ["React", "JavaScript", "REST APIs", "Claude Code", "Tailwind", "Docker"],
+    images: leoPortalImages,
   },
   {
-    id: "cloudrx",
-    title: "CloudRx — Marketing Site",
+    id: "risksmart",
+    title: "RiskSmart — FE Site",
     category: "React Web App",
-    role: "Lead Front-End Developer",
+    role: "Front-End Developer · team of 2, paired with senior dev",
     status: "Live",
     description:
-      "Static marketing site for the CloudRx pharmacy service. I led the front-end build, applying the same component-breakdown approach to structure clean, reusable page templates.",
+      "Full front-end rebuild of the RiskSmart platform. I worked alongside a senior developer who led the API integration, focusing my own time on component build and styling from the Figma designs.",
     highlights: [
-      "Delivered fully responsive, brand-aligned pages from wireframe through to client sign-off.",
-      "Built reusable page templates shared with the internal portal build.",
+      "Built and styled components across the full site rebuild, matched to Figma and brand guidelines.",
+      "Paired closely with a senior developer, learning state management and REST API patterns on a live production codebase.",
+      "Delivered responsive layouts and handled cross-browser testing across a large multi-page site.",
+      "Supported QA and bug fixing through to release.",
     ],
     tags: ["React", "JavaScript", "SCSS", "Tailwind", "REST APIs", "BitBucket"],
-    image: cloudRxSignIn,
-    liveUrl: "https://www.cloudrx.co.uk/",
+    images: risksmartImages,
+    liveUrl: "https://www.risksmart.com/",
   },
   {
-    id: "cloudrx-portal",
-    title: "CloudRx — Doctors Portal",
+    id: "stax-trade-centres",
+    title: "Stax Trade Centres",
     category: "React Web App",
-    role: "Lead Front-End Developer",
-    status: "Internal",
+    role: "Front-End Developer · team collaboration, bi-weekly sprints",
+    status: "Live",
     description:
-      "Internal portal for prescribers: patient search and records, prescription creation and approval, delivery details and reporting. I led the front-end build from component breakdown through styling and REST API integration.",
+      "Year-long front-end build for a large trade e-commerce site, delivered in an Agile team on bi-weekly sprints. I focused on component build and styling, and owned a number of API endpoints along with the site's slide-out drawers and more complex interactive logic.",
     highlights: [
-      "Built data-heavy tables with sorting, pagination and per-row actions from reusable base components.",
-      "Created multi-step prescription and patient forms with validation, postcode lookup and clear empty/error states.",
-      "Delivered filter drawers, slide-out panels and reporting screens with Excel export against the brand guidelines.",
-      "Integrated the REST API endpoints for patients, prescriptions, approvals and reports.",
+      "Built and styled components across a large, multi-section site to Figma and brand guidelines, working in a small front-end team.",
+      "Integrated a number of REST API endpoints alongside back-end developers.",
+      "Built slide-out filter drawers and complex conditional UI logic, including state handling across nested filters.",
+      "Worked in bi-weekly sprints across a year-long delivery, with regular planning, review and refinement.",
     ],
-    tags: ["React", "JavaScript", "SCSS", "REST APIs", "Axios", "BitBucket"],
-    image: doctorApprovals,
-    gallery: cloudRxPortalGallery,
+    tags: ["React", "JavaScript", "SCSS", "Tailwind",  "REST APIs", "Agile", "BitBucket"],
+    images: staxImages,
+    liveUrl: "https://www.staxtradecentres.co.uk/",
   },
-
   {
     id: "edgex",
     title: "EdgeX — Dental Training App",
@@ -119,7 +132,7 @@ export const projects: Project[] = [
       "Developed dynamic course material and interactive UI components to streamline contractor workflows.",
     ],
     tags: ["React Native", "Expo Go", "Xcode", "REST APIs", "Axios", "BitBucket"],
-    image: "/projects/project-mobile.png",
+    images: edgexImages,
   },
   {
     id: "edge-electrical",
@@ -134,242 +147,6 @@ export const projects: Project[] = [
       "Integrated an initial set of REST API endpoints, with the wider team supporting further API and back-end work near completion.",
     ],
     tags: ["React Native", "JavaScript", "REST APIs", "Axios", "BitBucket"],
-    image: "/projects/project-edge-electrical.png",
-  },
-];
-
-export const workGroups: WorkGroup[] = [
-  {
-    title: "Front-End Collaboration — team of 3",
-    blurb: "Contributed to build, styling and API integration across:",
-    items: [
-      { name: "RiskSmart", url: "https://www.risksmart.com/" },
-      { name: "Stax Trade Centres", url: "https://www.staxtradecentres.co.uk/" },
-      { name: "Ballerz", url: "https://ballerz.co.uk/", note: "plus internal portal & game screens" },
-      { name: "Helix" },
-      { name: "Suite Spotter" },
-      { name: "Sensore Health", url: "https://sensore.health/", note: "tablet app" },
-      { name: "Appeals Centre", url: "https://www.appealscentre.eu/" },
-    ],
-  },
-  {
-    title: "Legacy Code & CMS Front-End Support",
-    blurb: "Picked up tickets on legacy codebases and built front-ends within existing CMS platforms:",
-    items: [
-      { name: "Glindexes", url: "https://www.glindexes.com/" },
-      { name: "Chase de Vere", url: "https://chasedevere.co.uk/" },
-      { name: "Solar Configurator", url: "https://www.solarconfigurator.co.uk/" },
-      { name: "Sturge Toth", url: "https://sturgetoth.com/" },
-      { name: "Hamerville", url: "https://hamerville.co.uk/", note: "app" },
-    ],
-  },
-];
-
-
-export const architecture: { title: string; intro: string; steps: ApproachStep[] } = {
-  title: "How I approach a front-end build",
-  intro:
-    "Once wireframes are handed over, I break the design down into a component architecture before development starts.",
-  steps: [
-    {
-      title: "Break down the design",
-      body: "Following Brad Frost's atomic design approach, I map atoms, molecules, organisms, templates and pages in a build spreadsheet to identify what can be reused across the project.",
-    },
-    {
-      title: "Build dynamic-first",
-      body: "Components are built to take data from the start, with API data plumbed in at parent level so child components stay presentational and reusable.",
-    },
-    {
-      title: "Own the structure and styling",
-      body: "I lead the structural breakdown, initial build and styling myself, keeping the UI consistent with Figma and brand guidelines.",
-    },
-    {
-      title: "Bring in support to ship",
-      body: "As deadlines approach I bring in one or two developers for larger components and API integration, reviewing the work back into the architecture.",
-    },
-  ],
-};
-
-export const snippets: Snippet[] = [
-  {
-    id: "api-hook",
-    title: "Form Validation",
-    language: "React Native",
-    description: "",
-    code: `const siteVisitSchema = object().shape({
-      shiftType: string().required(),
-      permitRequired: string().oneOf(["Yes", "No"]).required(),
-    
-      // Only required when the sibling field flags it — avoids maintaining
-      // a separate schema per branch of the form.
-      permitNumbers: array()
-        .of(object({ value: string().required("Enter a permit number") }))
-        .when("permitRequired", {
-          is: "Yes",
-          then: (schema) => schema.min(1, "Enter at least one permit number"),
-          otherwise: (schema) => schema.notRequired(),
-        }),
-    
-      hazards: array().of(string()).min(1, "Select at least one hazard"),
-      hazardsOther: string().when("hazards", {
-        is: (hazards: string[]) => hazards?.includes("Other"),
-        then: (schema) => schema.required("Describe the hazard"),
-        otherwise: (schema) => schema.notRequired(),
-      }),
-    });
-    
-    /** Runs a Yup schema and reshapes the result into { isValid, errors },
-     *  ready to hand straight to form state. */
-    async function validateForm<T extends object>(schema: ObjectSchema<T>, values: T) {
-      try {
-        await schema.validate(values, { abortEarly: false });
-        return { isValid: true, errors: {} as Record<string, string> };
-      } catch (error) {
-        const errors: Record<string, string> = {};
-        if (error instanceof ValidationError) {
-          error.inner.forEach((err) => {
-            if (err.path) errors[err.path] = err.message;
-          });
-        }
-        return { isValid: false, errors };
-      }
-    }`,
-  },
-//   {
-//     id: "parent-level-data",
-//     title: "Data at the parent, presentation in the child",
-//     language: "TypeScript (TSX)",
-//     description:
-//       "How I structure screens: the parent owns the typed API data and state, child components stay dumb and reusable — the pattern behind LEO and the prescriptions portals.",
-//     code: `interface Prescription {
-//   id: string;
-//   patient: string;
-//   status: "pending" | "approved" | "rejected";
-//   issuedAt: string;
-// }
-
-// function PrescriptionList() {
-//   const { data, loading, error } =
-//     useAxiosFetch<Prescription[]>("/api/prescriptions");
-
-//   if (loading) return <ListSkeleton rows={5} />;
-//   if (error) return <ErrorState onRetry={refetch} />;
-
-//   return (
-//     <ul className="grid gap-4">
-//       {data?.map((rx) => (
-//         <PrescriptionCard
-//           key={rx.id}
-//           patient={rx.patient}
-//           status={rx.status}
-//           issuedAt={rx.issuedAt}
-//         />
-//       ))}
-//     </ul>
-//   );
-// }`,
-//   },
-//   {
-//     id: "card-component",
-//     title: "Typed Animated Project Card",
-//     language: "TypeScript (TSX)",
-//     description:
-//       "A polished card with hover lift, glow, and image scale using only Tailwind utilities — with a typed props contract.",
-//     code: `interface ProjectCardProps {
-//   title: string;
-//   image: string;
-//   onOpen?: () => void;
-// }
-
-// export function ProjectCard({ title, image, onOpen }: ProjectCardProps) {
-//   return (
-//     <article
-//       onClick={onOpen}
-//       className="group rounded-2xl border border-border bg-card
-//         transition-all duration-300 hover:-translate-y-1
-//         hover:border-primary/40"
-//     >
-//       <div className="aspect-4/3 overflow-hidden">
-//         <img
-//           src={image}
-//           alt={title}
-//           className="h-full w-full object-cover
-//             transition-transform duration-500 group-hover:scale-105"
-//         />
-//       </div>
-//     </article>
-//   );
-// }`,
-//   },
-];
-
-
-export const techStack: string[] = [
-  "React.js",
-  "React Native",
-  "JavaScript (ES6+)",
-  "TypeScript (upskilling)",
-  "HTML5",
-  "CSS / SCSS",
-  "Tailwind",
-  "Bootstrap",
-  "REST APIs",
-  "Axios",
-  "Node.js",
-  "PHP (legacy)",
-  ".NET (familiarisation)",
-  "Azure DevOps",
-  "Docker",
-  "Storybook",
-  "Xcode",
-  "Git / GitHub / BitBucket",
-  "WordPress (CMS)",
-  "Claude Code",
-];
-
-export const certifications: string[] = [
-  "MentorHER – mentee",
-  "Intro to Web Dev – Code First Girls",
-  "Web Dev Group Project – Code First Girls",
-  "Git & GitHub – Codecademy",
-  "HTML / CSS – Codecademy",
-];
-
-export const experience: ExperienceItem[] = [
-  {
-    role: "Front End Developer",
-    company: "JB Cole UK (now Bolland & Co)",
-    period: "2024 – Present",
-    description:
-      "Led front-end delivery — from component architecture through to build and API integration — on 2 of 18 client projects, spanning 4 apps and 14 websites; collaborated in a small front-end team of 2–3 on the majority of the rest, and picked up legacy codebase and CMS ticket work on 5. Integrate REST APIs alongside back-end developers, apply clean code standards, considered state management and performance optimisation as everyday practice, and use Claude Code in the terminal to speed up delivery — including the component-architecture planning phase, now under a day rather than 2–3. Active in code review, stand-ups and sprint planning across Agile and Waterfall projects, and building TypeScript into day-to-day work.",
-  },
-  {
-    role: "Apprentice Software Engineer",
-    company: "JB Cole UK",
-    period: "2023 – 2024",
-    description:
-      "Hands-on experience on real-world front-end projects using React, contributing to bug fixes, UI improvements and API integrations. Shadowed senior developers to build understanding of clean code, accessibility and version-control best practice.",
-  },
-];
-
-export const education: EducationItem[] = [
-  {
-    title: "Software Developer Apprenticeship – Level 4",
-    institution: "Manchester Digital",
-    period: "2023 – 2024",
-  },
-  {
-    title: "Front End Web Dev Certification – Bootcamp",
-    institution: "University of Birmingham",
-    period: "2022 – 2023",
-  },
-];
-
-export const interests: string[] = [
-  "Music & gigs",
-  "Dog walks",
-  "Dining out",
-  "Activity bars",
-  "Puzzles",
-  "Reading",
+    images: edgeElecImages,
+  }
 ];

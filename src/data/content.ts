@@ -1,7 +1,8 @@
 import { Download, Mail } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 
-import { LinkedinIcon } from "@/components/base/icons/LinkedinIcon";
+import { LinkedinIcon } from "@/assets/icons/LinkedinIcon";
+import { GithubIcon } from "@/assets/icons/GitHubIcon"
 import type { NavItem, SectionCopy } from "./types";
 
 /** Matches lucide-react's icon signature closely enough for our own SVG icons to fit too. */
@@ -103,11 +104,12 @@ export function getContactActions(cvUrl: string): ContactAction[] {
       external: true,
     },
     { label: "Download CV", href: cvUrl, icon: Download, variant: "secondary", download: true },
+    { label: "GitHub", href: 'https://github.com/lillyilex', icon: GithubIcon, variant: "secondary" },
   ];
 }
 
 export const footer = {
-  note: "Built with React, Tailwind & attention to detail.",
+  note: "Built with attention to detail.",
   role: "Front End Developer",
   owner: "Lil Lloyd-Jones",
 };

@@ -17,9 +17,8 @@ export interface Screenshot {
     description: string;
     highlights: string[];
     tags: string[];
-    image: string;
     liveUrl?: string;
-    gallery?: Screenshot[];
+    images?: Screenshot[];
   }
   
   export interface WorkGroup {
