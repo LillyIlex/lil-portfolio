@@ -19,9 +19,14 @@ import risksmart2 from "@/assets/risksmart/risksmart2.png"
 import risksmart3 from "@/assets/risksmart/risksmart3.png"
 import risksmart4 from "@/assets/risksmart/risksmart4.png"
 
-import stax from "@/assets/stax/stax.png"
+import staxLanding from "@/assets/stax/stax-landing.png"
 import stax2 from "@/assets/stax/stax2.png"
 import stax3 from "@/assets/stax/stax3.png"
+import staxLogin from "@/assets/stax/stax-login.png"
+import staxBlur from "@/assets/stax/stax-blur.png"
+import staxLaptop from "@/assets/stax/stax-laptop.png"
+import staxLaptop2 from "@/assets/stax/stax-laptop2.png"
+import staxLaptop3 from "@/assets/stax/stax-laptop3.png"
 
 import type { Project, Screenshot,} from "./types";
 
@@ -42,9 +47,12 @@ export const leoPortalImages: Screenshot[] = [
 ]
 
 export const staxImages: Screenshot[] = [
-  { url: stax, caption: "Stax Trade Centres" },
-  { url: stax2, caption: "Stax Trade Centres" },
-  { url: stax3, caption: "Stax Trade Centres" },
+  { url: staxLanding, caption: "Stax Trade Centres" },
+  { url: staxLogin, caption: "Stax Trade Centres - members only" },
+  { url: staxBlur, caption: "Stax Trade Centres - logged out view" },
+  { url: staxLaptop, caption: "Stax Trade Centres - unauthenticated vs authenticated view" },
+  { url: staxLaptop2, caption: "Stax Trade Centres - navigation built in heirarchyies" },
+  { url: staxLaptop3, caption: "Stax Trade Centres - reusable drawer component" },
 ]
 
 export const risksmartImages: Screenshot[] = [
