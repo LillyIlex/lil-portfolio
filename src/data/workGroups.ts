@@ -5,13 +5,13 @@ export const workGroups: WorkGroup[] = [
     title: "Front-End Collaboration — team of 3",
     blurb: "Contributed to build, styling and API integration across:",
     items: [
-      { name: "RiskSmart", url: "https://www.risksmart.com/" },
-      { name: "Stax Trade Centres", url: "https://www.staxtradecentres.co.uk/" },
       { name: "Ballerz", url: "https://ballerz.co.uk/", note: "plus internal portal & game screens" },
+      { name: "Sensore Health", url: "https://sensore.health/", note: "tablet app" },
+      { name: "Appeals Centre", url: "https://www.appealscentre.eu/", note: "tablet app" },
+      { name: "CloudRx", url: "https://www.cloudrx.co.uk/"  },
+      { name: "CloudRx Doctors", note: "internal medical portal" },
       { name: "Helix" },
       { name: "Suite Spotter" },
-      { name: "Sensore Health", url: "https://sensore.health/", note: "tablet app" },
-      { name: "Appeals Centre", url: "https://www.appealscentre.eu/" },
     ],
   },
   {
@@ -22,7 +22,7 @@ export const workGroups: WorkGroup[] = [
       { name: "Chase de Vere", url: "https://chasedevere.co.uk/" },
       { name: "Solar Configurator", url: "https://www.solarconfigurator.co.uk/" },
       { name: "Sturge Toth", url: "https://sturgetoth.com/" },
-      { name: "Hamerville", url: "https://hamerville.co.uk/", note: "app" },
+      { name: "Hamerville", note: "app" },
     ],
   },
 ];

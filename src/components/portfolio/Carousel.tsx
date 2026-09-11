@@ -113,7 +113,7 @@ export function Carousel({ shots, fallbackImage = placeholderImg, alt }: Carouse
       <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1.5">
         {images.map((shot, i) => (
          <button
-            key={`dot-${i}`}
+            key={`${shot}-${i}`}
             type="button"
             onClick={() => goTo(i)}
             aria-label={`Go to screenshot ${i + 1}`}
