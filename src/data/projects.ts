@@ -1,30 +1,30 @@
-import leoDesktop from "@/assets/leo/leo-desktop.png";
-import leoDesktop2 from "@/assets/leo/leo-desktop2.png";
-import leoMobile from "@/assets/leo/leo.png";
-import leoMobile2 from "@/assets/leo/leo2.png";
-import leoMobile3 from "@/assets/leo/leo3.png";
+import leoDesktop from "@/assets/leo/leo-desktop.webp";
+import leoDesktop2 from "@/assets/leo/leo-desktop2.webp";
+import leoMobile from "@/assets/leo/leo.webp";
+import leoMobile2 from "@/assets/leo/leo2.webp";
+import leoMobile3 from "@/assets/leo/leo3.webp";
 
-import portal from "@/assets/leo-portal/portal.png";
-import portalMfa from "@/assets/leo-portal/portal-mfa.png";
-import portal2 from "@/assets/leo-portal/portal2.png";
+import portal from "@/assets/leo-portal/portal.webp";
+import portalMfa from "@/assets/leo-portal/portal-mfa.webp";
+import portal2 from "@/assets/leo-portal/portal2.webp";
 
-import edgeElecJob from "@/assets/edge-elec/edge-elec-job.png";
-import edgeElec from "@/assets/edge-elec/edge-elec.png";
+import edgeElecJob from "@/assets/edge-elec/edge-elec-job.webp";
+import edgeElec from "@/assets/edge-elec/edge-elec.webp";
 
-import edgex from "@/assets/edgex/edgex-login.png";
-import edgexTabs from "@/assets/edgex/edgex-tabs.png";
+import edgex from "@/assets/edgex/edgex-login.webp";
+import edgexTabs from "@/assets/edgex/edgex-tabs.webp";
 
-import risksmart from "@/assets/risksmart/risksmart-main.png"
-import risksmart2 from "@/assets/risksmart/risksmart2.png"
-import risksmart3 from "@/assets/risksmart/risksmart3.png"
-import risksmart4 from "@/assets/risksmart/risksmart4.png"
+import risksmart from "@/assets/risksmart/risksmart-main.webp"
+import risksmart2 from "@/assets/risksmart/risksmart2.webp"
+import risksmart3 from "@/assets/risksmart/risksmart3.webp"
+import risksmart4 from "@/assets/risksmart/risksmart4.webp"
 
-import staxLanding from "@/assets/stax/stax-landing.png"
-import staxLogin from "@/assets/stax/stax-login.png"
-import staxBlur from "@/assets/stax/stax-blur.png"
-import staxLaptop from "@/assets/stax/stax-laptop.png"
-import staxLaptop2 from "@/assets/stax/stax-laptop2.png"
-import staxLaptop3 from "@/assets/stax/stax-laptop3.png"
+import staxLanding from "@/assets/stax/stax-landing.webp"
+import staxLogin from "@/assets/stax/stax-login.webp"
+import staxBlur from "@/assets/stax/stax-blur.webp"
+import staxLaptop from "@/assets/stax/stax-laptop.webp"
+import staxLaptop2 from "@/assets/stax/stax-laptop2.webp"
+import staxLaptop3 from "@/assets/stax/stax-laptop3.webp"
 
 import type { Project, Screenshot,} from "./types";
 

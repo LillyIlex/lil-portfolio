@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Screenshot } from "@/data/types";
 
-import placeholderImg from "@/assets/project-placeholder.png"
+import placeholderImg from "@/assets/project-placeholder.webp"
 
 // const AUTOPLAY_INTERVAL = 8000; // autoplay disabled for now
 
