@@ -11,10 +11,6 @@ export interface LazyMountProps {
   fallback?: ReactNode;
 }
 
-/**
- * Defers mounting (and, with React.lazy children, downloading) a below-the-fold
- * section until it is close to the viewport.
- */
 export function LazyMount({ children, id, minHeight = 480, fallback }: LazyMountProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);

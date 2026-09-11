@@ -24,7 +24,7 @@ const widths = {
 /** Consistent section shell: vertical rhythm, gutters and content width. */
 export function Section({ id, children, width = "xl", className }: SectionProps) {
   return (
-    <section id={id} className={cn("scroll-mt-20 px-4 py-14 sm:px-6 sm:py-24 lg:px-8", className)}>
+    <section id={id} className={cn("scroll-mt-20 px-4 py-8 sm:px-6 sm:py-14 lg:px-8", className)}>
       <div className={cn("mx-auto", widths[width])}>{children}</div>
     </section>
   );

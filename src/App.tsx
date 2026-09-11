@@ -25,7 +25,7 @@ const deferredSections = [
 ];
 
 /**
- * This is a single-page portfolio — no router needed. NavBar links and
+ * This is a single-page portfolio. NavBar links and
  * scroll-spy work off in-page anchor ids, not routes.
  */
 export function App() {

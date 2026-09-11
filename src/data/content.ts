@@ -95,7 +95,7 @@ export const contactPhone = { label: "07907 287275", href: "tel:07907287275" };
 
 export function getContactActions(cvUrl: string): ContactAction[] {
   return [
-    { label: "Email me", href: "mailto:eil-j@hotmail.co.uk", icon: Mail, variant: "primary" },
+    
     {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/lil-corris",
@@ -103,8 +103,9 @@ export function getContactActions(cvUrl: string): ContactAction[] {
       variant: "secondary",
       external: true,
     },
-    { label: "Download CV", href: cvUrl, icon: Download, variant: "secondary", download: true },
     { label: "GitHub", href: 'https://github.com/lillyilex', icon: GithubIcon, variant: "secondary" },
+    { label: "Download CV", href: cvUrl, icon: Download, variant: "secondary", download: true },
+    { label: "Email me", href: "mailto:eil-j@hotmail.co.uk", icon: Mail, variant: "primary" },
   ];
 }
 
