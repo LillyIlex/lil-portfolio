@@ -20,8 +20,6 @@ import risksmart3 from "@/assets/risksmart/risksmart3.png"
 import risksmart4 from "@/assets/risksmart/risksmart4.png"
 
 import staxLanding from "@/assets/stax/stax-landing.png"
-import stax2 from "@/assets/stax/stax2.png"
-import stax3 from "@/assets/stax/stax3.png"
 import staxLogin from "@/assets/stax/stax-login.png"
 import staxBlur from "@/assets/stax/stax-blur.png"
 import staxLaptop from "@/assets/stax/stax-laptop.png"
