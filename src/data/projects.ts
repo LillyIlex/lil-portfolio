@@ -4,6 +4,10 @@ import leoMobile from "@/assets/leo/leo.png";
 import leoMobile2 from "@/assets/leo/leo2.png";
 import leoMobile3 from "@/assets/leo/leo3.png";
 
+import portal from "@/assets/leo-portal/portal.png";
+import portalMfa from "@/assets/leo-portal/portal-mfa.png";
+import portal2 from "@/assets/leo-portal/portal2.png";
+
 import edgeElecJob from "@/assets/edge-elec/edge-elec-job.png";
 import edgeElec from "@/assets/edge-elec/edge-elec.png";
 
@@ -25,14 +29,16 @@ export type { Project, Screenshot } from "./types";
 
 export const leoImages: Screenshot[] = [
   { url: leoDesktop, caption: "Leo website - landing page" },
-  { url: leoDesktop2, caption: "Leo website screens - modal & products" },
+  { url: leoDesktop2, caption: "Leo website - modal & products" },
   { url: leoMobile, caption: "Leo" },
   { url: leoMobile2, caption: "Leo" },
   { url: leoMobile3, caption: "Leo" },
 ]
 
 export const leoPortalImages: Screenshot[] = [
-  { url: leoDesktop2, caption: "Leo" },
+  { url: portal, caption: "Leo pharmacists portal" },
+  { url: portalMfa, caption: "Leo pharmacists portal" },
+  { url: portal2, caption: "Leo pharmacists portal" },
 ]
 
 export const staxImages: Screenshot[] = [
