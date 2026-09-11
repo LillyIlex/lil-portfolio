@@ -22,12 +22,7 @@ export function LazyMount({ children, id, minHeight = 480, fallback }: LazyMount
       return;
     }
 
-    // Let NavBar force this section to mount ahead of a nav click, so the
-    // scroll target's position is correct before we ever scroll to it.
     const unregister = id ? registerLazySection(id, () => setShow(true)) : undefined;
-
-    // Mount once the browser is idle too, so anchor positions settle early.
-    const idle = window.setTimeout(() => setShow(true), 900);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -42,7 +37,6 @@ export function LazyMount({ children, id, minHeight = 480, fallback }: LazyMount
     observer.observe(node);
     return () => {
       unregister?.();
-      window.clearTimeout(idle);
       observer.disconnect();
     };
   }, [id]);
