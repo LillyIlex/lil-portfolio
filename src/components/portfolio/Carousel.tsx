@@ -140,7 +140,7 @@ export function Carousel({ shots, fallbackImage = placeholderImg, alt }: Carouse
                 </button>
 
                 <div className="absolute bottom-14 left-1/2 flex -translate-x-1/2 gap-1.5">
-                  {images.map((shot, i) => (
+                  {images.map((_, i) => (
                     <button
                       key={`lb-dot-${i}`}
                       type="button"
