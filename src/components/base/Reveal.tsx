@@ -6,6 +6,7 @@ export interface RevealProps {
   children: ReactNode;
   /** Stagger in ms — used to cascade cards within a grid. */
   delay?: number;
+  
   motion?: "up" | "fade";
   className?: string;
 }
@@ -42,7 +43,7 @@ export function Reveal({ children, delay = 0, motion = "up", className }: Reveal
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
       className={cn(
-        "transition-all duration-700 ease-out motion-reduce:transition-none",
+        "min-w-0 transition-all duration-700 ease-out will-change-[opacity,transform] motion-reduce:transition-none",
         visible
           ? "translate-y-0 opacity-100"
           : cn("opacity-0", motion === "up" && "translate-y-6"),

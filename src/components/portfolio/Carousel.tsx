@@ -1,11 +1,11 @@
 // components/portfolio/Carousel.tsx
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Screenshot } from "@/data/types";
 
-import placeholderImg from "@/assets/project-placeholder.webp"
+import placeholderImg from "@/assets/project-placeholder.png"
 
 // const AUTOPLAY_INTERVAL = 8000; // autoplay disabled for now
 
@@ -19,8 +19,31 @@ export function Carousel({ shots, fallbackImage = placeholderImg, alt }: Carouse
   const images = shots?.length ? shots : fallbackImage ? [{ url: fallbackImage, caption: alt }] : [];
   const [index, setIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  // const [isHovered, setIsHovered] = useState(false); // was only used to pause autoplay
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const isCarousel = images.length > 1;
+
+  const clearTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
+
+  // --- Autoplay disabled for now ---
+  // const startTimer = useCallback(() => {
+  //   clearTimer();
+  //   if (!isCarousel || !isLightboxOpen) return;
+  //   timerRef.current = setInterval(() => {
+  //     setIndex((current) => (current + 1) % images.length);
+  //   }, AUTOPLAY_INTERVAL);
+  // }, [clearTimer, isCarousel, isLightboxOpen, images.length]);
+
+  // useEffect(() => {
+  //   startTimer();
+  //   return clearTimer;
+  // }, [startTimer, clearTimer]);
 
   const goTo = (nextIndex: number) => {
     setIndex((nextIndex + images.length) % images.length);
@@ -46,6 +69,7 @@ export function Carousel({ shots, fallbackImage = placeholderImg, alt }: Carouse
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
+      clearTimer();
     };
   }, [isLightboxOpen, index]);
 
@@ -83,7 +107,7 @@ export function Carousel({ shots, fallbackImage = placeholderImg, alt }: Carouse
                   loading={i === index ? "eager" : "lazy"}
                   decoding="async"
                   className={cn(
-                    "absolute inset-0 h-full w-full object-contain transition-opacity duration-500",
+                    "absolute inset-0 h-full w-full max-w-full object-contain transition-opacity duration-500",
                     i === index ? "opacity-100" : "opacity-0"
                   )}
                 />
@@ -149,7 +173,7 @@ export function Carousel({ shots, fallbackImage = placeholderImg, alt }: Carouse
           alt={images[0].caption || alt}
           loading="lazy"
           decoding="async"
-          className="aspect-4/3 w-full object-cover object-top transition-transform duration-300 group-hover/carousel:scale-105"
+          className="aspect-4/3 w-full max-w-full object-cover object-top transition-transform duration-300 group-hover/carousel:scale-105"
         />
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-200 group-hover/carousel:bg-black/20 group-hover/carousel:opacity-100">
           <ZoomIn className="h-6 w-6 text-white drop-shadow" />

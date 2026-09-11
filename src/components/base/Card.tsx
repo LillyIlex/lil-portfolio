@@ -47,8 +47,8 @@ function ProjectCard({ project }: { project: Project }) {
   const hasMoreBullets = project.highlights.length > BULLET_LIMIT;
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card">
-      <div className="aspect-[16/10] bg-forest p-3 sm:aspect-[4/3] sm:p-4">
+    <article className="group relative flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-card">
+      <div className="aspect-[16/10] w-full min-w-0 bg-forest p-3 sm:aspect-[4/3] sm:p-4">
         <Carousel
           shots={project.images ?? []}
           alt={`${project.title} interface`}
