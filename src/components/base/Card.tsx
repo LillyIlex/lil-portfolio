@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { ChevronDown, ExternalLink } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -7,7 +7,11 @@ import { BulletList, Pill, TagList } from "@/components/base/Typography";
 import { Title } from "@/components/base/Title";
 import { Paragraph } from "@/components/base/Paragraph";
 import { Carousel } from "@/components/portfolio/Carousel";
-import { CodeBlock } from "@/components/portfolio/CodeBlock";
+
+// Lazy: keeps react-syntax-highlighter (~9MB of source, Prism + language
+// grammars) out of the home page's bundle. Only the /code page's snippet
+// cards ever hit this import.
+const CodeCard = lazy(() => import("@/components/base/CodeCard"));
 
 const BULLET_LIMIT = 2;
 
@@ -30,7 +34,11 @@ export function Card(props: CardProps) {
     case "approach":
       return <ApproachCard step={props.data} index={props.index} />;
     case "code":
-      return <CodeCard snippet={props.data} />;
+      return (
+        <Suspense fallback={<div className="h-48 animate-pulse rounded-2xl bg-card" />}>
+          <CodeCard snippet={props.data} />
+        </Suspense>
+      );
   }
 }
 
@@ -174,12 +182,4 @@ function ApproachCard({
   );
 }
 
-function CodeCard({ snippet }: { snippet: Snippet }) {
-  return (
-    <CodeBlock
-      code={snippet.code}
-      language={snippet.language}
-      description={snippet.description}
-    />
-  );
-}
+

@@ -19,31 +19,8 @@ export function Carousel({ shots, fallbackImage = placeholderImg, alt }: Carouse
   const images = shots?.length ? shots : fallbackImage ? [{ url: fallbackImage, caption: alt }] : [];
   const [index, setIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  // const [isHovered, setIsHovered] = useState(false); // was only used to pause autoplay
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const isCarousel = images.length > 1;
-
-  const clearTimer = useCallback(() => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-    }
-  }, []);
-
-  // --- Autoplay disabled for now ---
-  // const startTimer = useCallback(() => {
-  //   clearTimer();
-  //   if (!isCarousel || !isLightboxOpen) return;
-  //   timerRef.current = setInterval(() => {
-  //     setIndex((current) => (current + 1) % images.length);
-  //   }, AUTOPLAY_INTERVAL);
-  // }, [clearTimer, isCarousel, isLightboxOpen, images.length]);
-
-  // useEffect(() => {
-  //   startTimer();
-  //   return clearTimer;
-  // }, [startTimer, clearTimer]);
 
   const goTo = (nextIndex: number) => {
     setIndex((nextIndex + images.length) % images.length);
@@ -69,7 +46,6 @@ export function Carousel({ shots, fallbackImage = placeholderImg, alt }: Carouse
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
-      clearTimer();
     };
   }, [isLightboxOpen, index]);
 
