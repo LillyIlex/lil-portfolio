@@ -57,6 +57,32 @@
         }
       })();
     </script>
+    <!-- TEMPORARY DIAGNOSTIC: shows any JS error directly on the page.
+         Remove this whole <script> block once the bug is found. -->
+    <script>
+      (function () {
+        function showError(label, err) {
+          var msg = (err && (err.stack || err.message)) || String(err);
+          var box = document.getElementById("__diag_error");
+          if (!box) {
+            box = document.createElement("pre");
+            box.id = "__diag_error";
+            box.style.cssText =
+              "position:fixed;inset:0;z-index:999999;margin:0;padding:16px;" +
+              "background:#1a0000;color:#ff6b6b;font-size:13px;line-height:1.4;" +
+              "white-space:pre-wrap;overflow:auto;font-family:monospace;";
+            document.body.appendChild(box);
+          }
+          box.textContent += "[" + label + "] " + msg + "\n\n";
+        }
+        window.addEventListener("error", function (e) {
+          showError("error", e.error || e.message);
+        });
+        window.addEventListener("unhandledrejection", function (e) {
+          showError("promise", e.reason);
+        });
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
