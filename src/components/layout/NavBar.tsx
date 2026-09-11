@@ -34,7 +34,8 @@ function scrollToAnchor(id: string) {
           window.scrollTo({ top: window.scrollY + drift });
         }
       };
-      if ("onscrollend" in window) {
+      const supportsScrollEnd = "onscrollend" in window;
+      if (supportsScrollEnd) {
         window.addEventListener("scrollend", settle, { once: true });
       } else {
         window.setTimeout(settle, 700);
@@ -121,10 +122,12 @@ export function NavBar() {
   };
 
   const renderNavItem = (item: NavItem, mobile: boolean) => {
+    const action = item.action;
+
     const isActive =
-      item.action.kind === "route"
-        ? location.pathname === item.action.path
-        : isHome && activeAnchor === item.action.anchorId;
+      action.kind === "route"
+        ? location.pathname === action.path
+        : isHome && activeAnchor === action.anchorId;
 
     const classes = cn(
       mobile
@@ -137,41 +140,44 @@ export function NavBar() {
           : "text-muted-foreground hover:text-foreground",
     );
 
-    if (item.action.kind === "route") {
+    if (action.kind === "route") {
+      const path = action.path;
       return (
-        <Link key={item.id} to={item.action.path} className={classes} onClick={() => setMobileOpen(false)}>
+        <Link key={item.id} to={path} className={classes} onClick={() => setMobileOpen(false)}>
           {item.label}
         </Link>
       );
     }
 
-    if (item.action.kind === "contact") {
-      const anchorTag = "a";
-      const ContactAnchor = anchorTag as "a";
+    if (action.kind === "contact") {
+      const anchorId = action.anchorId;
       return (
-        <ContactAnchor
+        <a
           key={item.id}
-          href={isHome ? `#${item.action.anchorId}` : "#"}
-          onClick={(event) => handleContactClick(event, item.action.anchorId)}
+          href={isHome ? `#${anchorId}` : "#"}
+          onClick={(event) => handleContactClick(event, anchorId)}
           className={classes}
         >
           {item.label}
-        </ContactAnchor>
+        </a>
       );
     }
 
-    const anchorTag = "a";
-    const AnchorLink = anchorTag as "a";
-    return (
-      <AnchorLink
-        key={item.id}
-        href={isHome ? `#${item.action.anchorId}` : ROUTES.home}
-        onClick={(event) => handleAnchorClick(event, item.action.anchorId)}
-        className={classes}
-      >
-        {item.label}
-      </AnchorLink>
-    );
+    if (action.kind === "anchor") {
+      const anchorId = action.anchorId;
+      return (
+        <a
+          key={item.id}
+          href={isHome ? `#${anchorId}` : ROUTES.home}
+          onClick={(event) => handleAnchorClick(event, anchorId)}
+          className={classes}
+        >
+          {item.label}
+        </a>
+      );
+    }
+
+    return null;
   };
 
   const visibleNavItems = navItems.filter(
