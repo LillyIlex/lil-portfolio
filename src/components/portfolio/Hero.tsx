@@ -65,7 +65,7 @@ export function Hero() {
           className="flex flex-col items-center gap-2 text-xs font-medium text-muted-foreground transition-colors hover:text-primary"
         >
           <span className="tracking-widest uppercase">Scroll</span>
-          <div className="h-10 w-px bg-gradient-to-b from-primary to-transparent" />
+          <div className="h-10 w-px bg-linear-to-b from-primary to-transparent" />
         </a>
       </div>
     </section>

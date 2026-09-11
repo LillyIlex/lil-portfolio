@@ -53,9 +53,23 @@ export interface Screenshot {
     period: string;
   }
   
+  /**
+   * - "route": a dedicated page, always navigates there directly.
+   * - "anchor": a section that only lives on the home page. Scrolls directly
+   *   when already home, otherwise navigates home first and then scrolls.
+   * - "contact": same as "anchor" when on the home page (scrolls to the
+   *   footer), but opens the Contact modal instead of navigating away when
+   *   triggered from any other route.
+   */
+  export type NavAction =
+    | { kind: "route"; path: string }
+    | { kind: "anchor"; anchorId: string }
+    | { kind: "contact"; anchorId: string };
+
   export interface NavItem {
     id: string;
     label: string;
+    action: NavAction;
   }
   
   export interface SectionCopy {

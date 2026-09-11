@@ -1,7 +1,9 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import { workGroups } from "@/data/workGroups";
 import { sections } from "@/data/content";
+import { ROUTES } from "@/lib/routes";
 import { Title } from "@/components/base/Title";
 import { Paragraph } from "@/components/base/Paragraph";
 import { Reveal } from "@/components/base/Reveal";
@@ -47,6 +49,16 @@ export function MoreWork() {
             </div>
           </Reveal>
         ))}
+      </div>
+
+      <div className="mt-10 flex justify-center sm:mt-14">
+        <Link
+          to={ROUTES.code}
+          className="inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:bg-card"
+        >
+          Check out some code
+          <ArrowRight className="h-4 w-4" />
+        </Link>
       </div>
     </Section>
   );

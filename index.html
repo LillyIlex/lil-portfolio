@@ -36,6 +36,27 @@
     />
   </head>
   <body>
+    <script>
+      // Other half of the 404.html redirect trick: turn ?redirect=/development
+      // back into a real /lil-portfolio/development URL via history.replaceState,
+      // before React Router reads the location, so it never sees the query string.
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var redirect = params.get("redirect");
+        if (redirect) {
+          params.delete("redirect");
+          var rest = params.toString();
+          window.history.replaceState(
+            null,
+            "",
+            window.location.pathname.slice(0, -1) +
+              redirect.replace(/~and~/g, "&") +
+              (rest ? "?" + rest : "") +
+              window.location.hash,
+          );
+        }
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

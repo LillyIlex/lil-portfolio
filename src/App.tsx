@@ -1,45 +1,53 @@
-import { lazy } from "react";
+import { lazy, Suspense, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import { NavBar } from "@/components/layout/NavBar";
 import { BackToTop } from "@/components/layout/BackToTop";
-import { LazyMount } from "@/components/base/LazyMount";
-import { Hero } from "@/components/portfolio/Hero";
-import { Projects } from "@/components/portfolio/Projects";
 import { Footer } from "@/components/portfolio/Footer";
+import { SectionSkeleton } from "@/components/base/LazyMount";
+import { Home } from "@/pages/Home";
+import { ROUTES } from "@/lib/routes";
 
-/** Below-the-fold sections are code-split and mounted as they approach the viewport. */
-const MoreWork = lazy(() => import("@/components/portfolio/MoreWork"));
-const Architecture = lazy(() => import("@/components/portfolio/Architecture"));
-const CodeSnippets = lazy(() => import("@/components/portfolio/CodeSnippets"));
-const Experience = lazy(() => import("@/components/portfolio/Experience"));
-const About = lazy(() => import("@/components/portfolio/About"));
-const Contact = lazy(() => import("@/components/portfolio/Contact"));
+/** Each secondary page is its own chunk — visiting "/" never downloads the
+ *  Development or Code page's JS at all, which is most of what was making
+ *  the old single-page build slow to load, especially on mobile. */
+const ProjectsPage = lazy(() => import("@/pages/ProjectsPage"));
+const DevelopmentPage = lazy(() => import("@/pages/DevelopmentPage"));
+const CodePage = lazy(() => import("@/pages/CodePage"));
+const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
 
-const deferredSections = [
-  { id: "more-work", Component: MoreWork, minHeight: 620 },
-  { id: "approach", Component: Architecture, minHeight: 560 },
-  { id: "snippets", Component: CodeSnippets, minHeight: 640 },
-  { id: "experience", Component: Experience, minHeight: 620 },
-  { id: "about", Component: About, minHeight: 720 },
-  { id: "contact", Component: Contact, minHeight: 420 },
-];
+/** Resets scroll on every route change, except when NavBar has just navigated
+ *  home specifically to scroll to an anchor (that scroll wins instead). */
+function ScrollToTop() {
+  const location = useLocation();
 
-/**
- * This is a single-page portfolio. NavBar links and
- * scroll-spy work off in-page anchor ids, not routes.
- */
+  useEffect(() => {
+    const scrollingToAnchor = Boolean((location.state as { scrollTo?: string } | null)?.scrollTo);
+    if (!scrollingToAnchor) {
+      window.scrollTo({ top: 0 });
+    }
+  }, [location.pathname, location.state]);
+
+  return null;
+}
+
 export function App() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-background font-sans">
+      <ScrollToTop />
       <NavBar />
-      <Hero />
-      <Projects />
 
-      {deferredSections.map(({ id, Component, minHeight }) => (
-        <LazyMount key={id} id={id} minHeight={minHeight}>
-          <Component />
-        </LazyMount>
-      ))}
+      <Suspense fallback={<SectionSkeleton />}>
+        <Routes>
+          <Route path={ROUTES.home} element={<Home />} />
+          <Route path={ROUTES.projects} element={<ProjectsPage />} />
+          <Route path={ROUTES.development} element={<DevelopmentPage />} />
+          <Route path={ROUTES.code} element={<CodePage />} />
+          {/* Any unmatched path — typo'd link, dead bookmark, etc — gets a
+              real 404 instead of silently bouncing to Home. */}
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
 
       <Footer />
       <BackToTop />

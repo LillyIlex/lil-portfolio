@@ -173,7 +173,7 @@ export function Carousel({ shots, fallbackImage = placeholderImg, alt }: Carouse
           alt={images[0].caption || alt}
           loading="lazy"
           decoding="async"
-          className="aspect-[4/3] w-full object-cover object-top transition-transform duration-300 group-hover/carousel:scale-105"
+          className="aspect-4/3 w-full object-cover object-top transition-transform duration-300 group-hover/carousel:scale-105"
         />
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-200 group-hover/carousel:bg-black/20 group-hover/carousel:opacity-100">
           <ZoomIn className="h-6 w-6 text-white drop-shadow" />

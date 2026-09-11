@@ -6,6 +6,30 @@
     <link rel="icon" type="image/svg+xml" href="/lil-portfolio/favicon.svg" />
     <title>Page not found | Elizabeth (Lil) Lloyd-Jones</title>
 
+    <script>
+      // GitHub Pages SPA redirect (rafgraph/spa-github-pages pattern).
+      // GH Pages serves this file for any unknown path, e.g. /lil-portfolio/development.
+      // We rewrite that path into a query string on the real index.html, which
+      // main.tsx's redirect script below decodes back into the real route,
+      // so React Router still resolves it correctly instead of losing the route.
+      var pathSegmentsToKeep = 1; // keeps "/lil-portfolio"
+      var l = window.location;
+      var path = l.pathname.split("/").slice(0, 1 + pathSegmentsToKeep).join("/");
+      var rest = l.pathname.slice(path.length);
+
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          path +
+          "/?redirect=" +
+          encodeURIComponent(rest.replace(/&/g, "~and~")) +
+          (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+          l.hash,
+      );
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

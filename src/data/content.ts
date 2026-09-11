@@ -3,20 +3,23 @@ import type { ComponentType, SVGProps } from "react";
 
 import { LinkedinIcon } from "@/assets/icons/LinkedinIcon";
 import { GithubIcon } from "@/assets/icons/GithubIcon"
+import { ROUTES } from "@/lib/routes";
 import type { NavItem, SectionCopy } from "./types";
 
 /** Matches lucide-react's icon signature closely enough for our own SVG icons to fit too. */
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 
 export const navItems: NavItem[] = [
-  { id: "projects", label: "Work" },
-  { id: "more-work", label: "More" },
-  { id: "approach", label: "Approach" },
-  { id: "snippets", label: "Code" },
-  { id: "experience", label: "Experience" },
-  { id: "about", label: "About" },
-  { id: "contact", label: "Contact" },
+  { id: "home", label: "Home", action: { kind: "route", path: ROUTES.home } },
+  { id: "projects", label: "Projects", action: { kind: "route", path: ROUTES.projects } },
+  { id: "development", label: "Development", action: { kind: "route", path: ROUTES.development } },
+  { id: "snippets", label: "Code", action: { kind: "route", path: ROUTES.code } },
+  { id: "experience", label: "Experience", action: { kind: "anchor", anchorId: "experience" } },
+  // { id: "about", label: "About", action: { kind: "anchor", anchorId: "about" } },
+  { id: "contact", label: "Contact", action: { kind: "contact", anchorId: "contact" } },
 ];
+
+export const homeAnchorOrder = ["experience", "about", "contact"];
 
 export const hero = {
   eyebrow: "Front End Developer",
