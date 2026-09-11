@@ -66,12 +66,13 @@ export const projects: Project[] = [
     role: "Lead Front-End Developer",
     status: "Live",
     description:
-      "Subscription-based healthcare platform. I took the designs post-wireframe, produced the full component breakdown, then owned the structural build, styling and API integration end-to-end.",
+      "Subscription-based hair-loss treatment website. I took the designs post-wireframe, produced the full component breakdown, then owned the structural build, styling and API integration end-to-end.",
     highlights: [
       "Mapped base components, grouped components, blocks and screens in a build spreadsheet to maximise reusability.",
       "Built components dynamic-first, with API data plumbed in at parent level so children stayed presentational.",
       "Brought in a team of 2–3 for REST API integration on the larger, data-heavy components as deadline approached.",
       "Mobile-first responsive design matched to Figma and brand guidelines across mobile, tablet and desktop.",
+      "Built a 13 step questionnaire and wired in validation logic"
     ],
     tags: ["React", "JavaScript (ES6+)", "SCSS", "REST APIs", "Axios", "Docker", "BitBucket"],
     images: leoImages,
@@ -85,7 +86,7 @@ export const projects: Project[] = [
     role: "Lead Front-End Developer · AI-augmented build",
     status: "Internal",
     description:
-      "Internal portal supporting LEO, used to manage and fulfil patient prescriptions. Built from designs using an AI-augmented workflow with Claude Code.",
+      "Internal portal supporting LEO, used to manage and fulfil patient prescriptions, connecting the pharmacists to the perscriptions. Built from designs using an AI-augmented workflow with Agentic AI.",
     highlights: [
       "Used Claude Code to support the architecture breakdown, cutting a 2–3 day planning phase to under a day.",
       "Directed component and screen builds through my own prompts, reviews and refactors, checking every screen against the designs.",
@@ -102,14 +103,14 @@ export const projects: Project[] = [
     role: "Front-End Developer · team of 2, paired with senior dev",
     status: "Live",
     description:
-      "Full front-end rebuild of the RiskSmart platform. I worked alongside a senior developer who led the API integration, focusing my own time on component build and styling from the Figma designs.",
+      "Full front-end rebuild of the RiskSmart platform. I worked alongside a senior developer who led the API integration, focusing my own time on component build and styling from the XD designs.",
     highlights: [
-      "Built and styled components across the full site rebuild, matched to Figma and brand guidelines.",
-      "Paired closely with a senior developer, learning state management and REST API patterns on a live production codebase.",
+      "Built and styled components across the full site rebuild, matched to XD and brand guidelines.",
+      "Paired closely with a senior developer, learning state management on a live production codebase.",
       "Delivered responsive layouts and handled cross-browser testing across a large multi-page site.",
-      "Supported QA and bug fixing through to release.",
+      "Supported bug fixing through to release.",
     ],
-    tags: ["React", "JavaScript", "SCSS", "Tailwind", "REST APIs", "BitBucket"],
+    tags: ["React", "JavaScript", "SCSS", "Tailwind", "BitBucket"],
     images: risksmartImages,
     liveUrl: "https://www.risksmart.com/",
   },
@@ -120,11 +121,11 @@ export const projects: Project[] = [
     role: "Front-End Developer · team collaboration, bi-weekly sprints",
     status: "Live",
     description:
-      "Year-long front-end build for a large trade e-commerce site, delivered in an Agile team on bi-weekly sprints. I focused on component build and styling, and owned a number of API endpoints along with the site's slide-out drawers and more complex interactive logic.",
+      "Year-long front-end build for a large trade e-commerce site, delivered in an Agile team on bi-weekly sprints. I focused on component build and styling, and owned a number of API endpoints along with some of the site's more complex interactive logic.",
     highlights: [
-      "Built and styled components across a large, multi-section site to Figma and brand guidelines, working in a small front-end team.",
-      "Integrated a number of REST API endpoints alongside back-end developers.",
-      "Built slide-out filter drawers and complex conditional UI logic, including state handling across nested filters.",
+      "Built and styled components across a large, multi-section site to design and brand guidelines, working in a small front-end team.",
+      "Integrated a number of REST API endpoints alongside back-end developers, parsing the data into a structured format.",
+      "Built complex conditional UI logic, including state handling across nested filters.",
       "Worked in bi-weekly sprints across a year-long delivery, with regular planning, review and refinement.",
     ],
     tags: ["React", "JavaScript", "SCSS", "Tailwind",  "REST APIs", "Agile", "BitBucket"],
@@ -154,10 +155,11 @@ export const projects: Project[] = [
     role: "Front-End Developer · team of 3",
     status: "In development",
     description:
-      "Mobile app taken from design through component breakdown, with form validation and the initial API endpoint integration built by me.",
+      "Mobile app taken from design through component breakdown, with form validation and API endpoint integration.",
     highlights: [
-      "Built the forms and validation myself, from design through to working screens.",
-      "Integrated an initial set of REST API endpoints, with the wider team supporting further API and back-end work near completion.",
+      "Built extensive forms and validation myself, from design & exisiting live logic, through to working screens.",
+      "Wired in the validation logic for the authentication screens",
+      "Integrated  REST API endpoints as part of a wider development team.",
     ],
     tags: ["React Native", "JavaScript", "REST APIs", "Axios", "BitBucket"],
     images: edgeElecImages,

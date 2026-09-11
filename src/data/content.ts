@@ -39,7 +39,7 @@ export const sections: Record<
     eyebrow: "Portfolio",
     title: "Selected Work",
     description:
-      "Websites, mobile apps and internal platforms I've led or contributed to — with the detail on what I actually owned.",
+      "Websites, mobile apps and internal platforms I've led or contributed to.",
   },
   moreWork: {
     eyebrow: "More Work",
