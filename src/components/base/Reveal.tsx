@@ -6,16 +6,10 @@ export interface RevealProps {
   children: ReactNode;
   /** Stagger in ms — used to cascade cards within a grid. */
   delay?: number;
-  /** Motion direction: swipe up (default) or a plain fade. */
   motion?: "up" | "fade";
   className?: string;
 }
 
-/**
- * Reveals children on scroll with a swipe-up or fade, once only.
- * Uses IntersectionObserver so nothing animates off-screen, and falls back to
- * visible immediately when the API is unavailable or motion is reduced.
- */
 export function Reveal({ children, delay = 0, motion = "up", className }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -48,7 +42,7 @@ export function Reveal({ children, delay = 0, motion = "up", className }: Reveal
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
       className={cn(
-        "transition-all duration-700 ease-out will-change-[opacity,transform] motion-reduce:transition-none",
+        "transition-all duration-700 ease-out motion-reduce:transition-none",
         visible
           ? "translate-y-0 opacity-100"
           : cn("opacity-0", motion === "up" && "translate-y-6"),

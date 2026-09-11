@@ -33,7 +33,7 @@ function ScrollToTop() {
 
 export function App() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-background font-sans">
+    <main className="min-h-screen bg-background font-sans">
       <ScrollToTop />
       <NavBar />
 
