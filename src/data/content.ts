@@ -2,7 +2,7 @@ import { Download, Mail } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 
 import { LinkedinIcon } from "@/assets/icons/LinkedinIcon";
-import { GithubIcon } from "@/assets/icons/GitHubIcon"
+import { GithubIcon } from "@/assets/icons/GithubIcon"
 import type { NavItem, SectionCopy } from "./types";
 
 /** Matches lucide-react's icon signature closely enough for our own SVG icons to fit too. */
