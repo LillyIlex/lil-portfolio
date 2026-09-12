@@ -17,16 +17,20 @@
       property="og:description"
       content="React and React Native projects led from wireframe to launch: healthcare platforms, mobile apps and an internal pharmacy prescription portal."
     />
-    <!-- <meta
+    <meta
       property="og:image"
       content="https://lillyilex.github.io/lil-portfolio/og-image.png"
     />
     <meta
       property="og:url"
       content="https://lillyilex.github.io/lil-portfolio/"
-    /> -->
+    />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image"
+      content="https://lillyilex.github.io/lil-portfolio/og-image.png"
+    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,7 +40,7 @@
     />
 
     <style>
-      /* Inline to laod before the JS bundle arrives. */
+      /* Inline to load before the JS bundle arrives. */
       #boot-loader {
         position: fixed;
         inset: 0;
@@ -46,6 +50,7 @@
         align-items: center;
         justify-content: center;
         gap: 1.25rem;
+        padding: 0 1.5rem;
         background: #171c2b;
         background: oklch(0.21 0.04 250);
         transition: opacity 0.5s ease, visibility 0.5s ease;
@@ -58,11 +63,14 @@
       #boot-loader .bl-mark {
         font-family: "Syne", ui-sans-serif, system-ui, sans-serif;
         font-weight: 700;
-        font-size: 4rem;
-        letter-spacing: 0.1em;
+        /* Scales from ~1.75rem on a small phone up to 4rem on desktop
+           instead of a fixed 4rem that overflowed narrow screens. */
+        font-size: clamp(1.75rem, 9vw, 4rem);
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         color: #6ee7c2;
         color: oklch(0.75 0.18 165);
+        text-align: center;
       }
       #boot-loader .bl-dots {
         display: flex;
@@ -96,10 +104,15 @@
       }
       #boot-loader .bl-message {
         font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-        font-size: 2rem;
+        /* Scales from ~1.1rem on a small phone up to 2rem on desktop, and
+           wraps/centres instead of overflowing the viewport horizontally. */
+        font-size: clamp(1.1rem, 4.5vw, 2rem);
         color: #d6ded9;
         color: oklch(0.95 0.02 170 / 80%);
         min-height: 1.4em;
+        max-width: 90vw;
+        text-align: center;
+        word-break: break-word;
       }
       #boot-loader .bl-message::after {
         content: "_";
